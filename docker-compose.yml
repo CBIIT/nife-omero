@@ -1,0 +1,45 @@
+services:
+  server:
+    user: "1000:991"
+    # image: openmicroscopy/omero-server:latest
+    build:
+      context: .
+      dockerfile: omero-server.dockerfile
+    platform: linux/amd64
+    ports:
+      - "4063:4063"
+      - "4064:4064"
+    volumes:
+      - ./server/OMERO:/OMERO
+      - ./server/data:/data
+      - ./server/config:/opt/omero/server/config
+      - ./server/scripts:/opt/omero/server/OMERO.server/lib/scripts/omero/scripts
+      - ./server/var:/opt/omero/server/OMERO.server/var
+    environment:
+      - CONFIG_omero_db_host=database
+      - CONFIG_omero_db_user=omero
+      - CONFIG_omero_db_pass=omero
+      - CONFIG_omero_db_name=omero
+      - ROOTPASS=omero
+
+  web:
+    image: openmicroscopy/omero-web-standalone:latest
+    platform: linux/amd64
+    ports:
+      - "4080:4080"
+    volumes:
+      - ./web/var:/opt/omero/web/OMERO.web/var
+    environment:
+      - OMEROHOST=server
+
+  database:
+    image: postgres:latest
+    platform: linux/amd64
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: omero
+      POSTGRES_PASSWORD: omero
+      POSTGRES_DB: omero
