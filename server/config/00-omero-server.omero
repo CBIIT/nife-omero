@@ -1,0 +1,6 @@
+# Ansible managed
+config drop default
+config set omero.data.dir /OMERO
+
+# Additional custom options
+certificates -v
