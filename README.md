@@ -6,7 +6,6 @@ This repository provides Dockerfiles and configurations for deploying a customiz
 
 #### Clone the repository
 ```bash
-Copy code
 git clone https://github.com/cbiit/omero.git
 cd omero
 ```
