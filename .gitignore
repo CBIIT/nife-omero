@@ -1,0 +1,7 @@
+/database
+/server/OMERO
+/server/data
+/server/var
+/web/var
+
+.DS_Store
