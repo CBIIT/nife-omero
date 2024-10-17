@@ -11,8 +11,8 @@ config append omero.web.ui.top_links '["Webapp", "webapp_index", {"title": "Open
 # Other list value properties (append)
 config set omero.web.time_zone 'America/New_York'
 
-config append omero.web.template_dirs '"/opt/omero/web/OMERO.web/templates"'
 config append omero.web.staticfile_dirs '"/opt/omero/web/OMERO.web/static"'
+config append omero.web.template_dirs '"/opt/omero/web/OMERO.web/templates"'
 config set omero.web.index_template 'index.html'
 config set omero.web.favicon_url 'assets/favicon.ico'
 config set omero.web.login_logo '/static/assets/logo.svg'
