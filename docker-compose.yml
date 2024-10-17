@@ -1,11 +1,9 @@
 services:
   server:
     user: "1000:991"
-    # image: openmicroscopy/omero-server:latest
     build:
       context: .
       dockerfile: omero-server.dockerfile
-    platform: linux/amd64
     ports:
       - "4063:4063"
       - "4064:4064"
@@ -23,12 +21,19 @@ services:
       - ROOTPASS=omero
 
   web:
-    image: openmicroscopy/omero-web-standalone:latest
-    platform: linux/amd64
+    user: "999:999"
+    build:
+      context: .
+      dockerfile: omero-web.dockerfile
     ports:
       - "4080:4080"
     volumes:
+      - ./web/config:/opt/omero/web/config
       - ./web/var:/opt/omero/web/OMERO.web/var
+      - ./web/templates:/opt/omero/web/OMERO.web/templates
+      - ./web/static:/opt/omero/web/OMERO.web/static
+      - ./web/startup/70-install-apps.sh:/startup/70-install-apps.sh
+      - ./web/apps:/apps
     environment:
       - OMEROHOST=server
 
