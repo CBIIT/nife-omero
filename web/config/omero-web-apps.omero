@@ -1,0 +1,30 @@
+# Ansible managed
+
+# add application
+# config append omero.web.apps '"webapp"'
+
+# add top links
+config append omero.web.ui.top_links '["Webapp", "webapp_index", {"title": "Open app in new tab", "target": "_blank"}]'
+
+# ui metadata panes
+
+# Other list value properties (append)
+config set omero.web.time_zone 'America/New_York'
+
+config append omero.web.template_dirs '"/opt/omero/web/OMERO.web/templates"'
+config append omero.web.staticfile_dirs '"/opt/omero/web/OMERO.web/static"'
+config set omero.web.index_template 'index.html'
+config set omero.web.favicon_url 'assets/favicon.ico'
+config set omero.web.login_logo '/static/assets/logo.svg'
+config set omero.web.login.show_client_downloads false
+
+# config set omero.web.login_view 'custom_login'
+
+# Other key value properties (set)
+# config set omero.web.debug True
+
+# Enable CORS
+# config append omero.web.apps '"corsheaders"'
+# config append omero.web.middleware '{"index": 0.5, "class": "corsheaders.middleware.CorsMiddleware"}'
+# config append omero.web.middleware '{"index": 10, "class": "corsheaders.middleware.CorsPostCsrfMiddleware"}'
+# config set omero.web.cors_origin_allow_all True
