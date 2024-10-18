@@ -36,6 +36,21 @@ services:
       - ./web/apps:/apps
     environment:
       - OMEROHOST=server
+    develop:
+      watch:
+        - action: rebuild
+          path: ./web/config
+          target: /opt/omero/web/config
+        - action: rebuild
+          path: ./web/templates
+          target: /opt/omero/web/OMERO.web/templates
+        - action: rebuild
+          path: ./web/static
+          target: /opt/omero/web/OMERO.web/static
+        - action: rebuild
+          path: ./web/apps
+          target: /apps
+
 
   database:
     image: postgres:latest
