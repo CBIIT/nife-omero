@@ -1,0 +1,9 @@
+/database
+/server/OMERO
+/server/data
+/server/var
+/web/var
+/web/apps/**/*.egg-info
+/web/apps/**/__pycache__
+
+.DS_Store
